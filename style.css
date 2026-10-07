@@ -9,31 +9,117 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #0f0f1a;
+
+    /* Gradasi langit pink */
+    background:
+        linear-gradient(
+            to bottom,
+            #ffd6e7 0%,
+            #ffc1da 45%,
+            #f8a9c8 70%,
+            #f58ab6 100%
+        );
+
     font-family: Arial, sans-serif;
+
+    overflow: hidden;
+    position: relative;
 }
+
+/* =========================
+   RUMPUT BAGIAN BAWAH
+   ========================= */
+
+body::after {
+    content: "";
+    position: absolute;
+
+    left: -5%;
+    bottom: -30px;
+
+    width: 110%;
+    height: 150px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #8bcf8b 0%,
+            #68b86d 60%,
+            #4c9f59 100%
+        );
+
+    border-radius: 50% 50% 0 0;
+
+    z-index: 1;
+}
+
+/* Rumput-rumput kecil */
+
+body::before {
+    content: "🌱  🌿  🌱  🌿  🌱  🌿  🌱  🌿  🌱  🌿";
+
+    position: absolute;
+
+    bottom: 70px;
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 30px;
+
+    letter-spacing: 10px;
+
+    z-index: 2;
+}
+
+
+/* =========================
+   CONTAINER
+   ========================= */
 
 .container {
     text-align: center;
+    position: relative;
+
+    z-index: 5;
 }
+
+
+/* =========================
+   OPAY
+   ========================= */
 
 .wave-text {
     display: flex;
     justify-content: center;
+
     gap: 5px;
+
     font-size: 80px;
     font-weight: bold;
+
+    filter: drop-shadow(
+        0 8px 12px rgba(190, 60, 120, 0.25)
+    );
 }
+
+
+/* =========================
+   HURUF OPAY
+   ========================= */
 
 .wave-text span {
     display: inline-block;
 
     background: linear-gradient(
-        45deg,
-        #ff1493,
-        #ff69b4,
-        #9b5de5,
-        #00c6ff
+        135deg,
+        #ff4f9a,
+        #ff79b5,
+        #e83e8c,
+        #c72d78,
+        #ff5fa2
     );
 
     background-size: 300% 300%;
@@ -45,6 +131,9 @@ body {
         wave 1.5s ease-in-out infinite,
         gradient 4s ease infinite;
 }
+
+
+/* Gelombang tiap huruf */
 
 .wave-text span:nth-child(1) {
     animation-delay: 0s;
@@ -62,8 +151,15 @@ body {
     animation-delay: 0.3s;
 }
 
+
+/* =========================
+   ANIMASI GELOMBANG
+   ========================= */
+
 @keyframes wave {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
 
@@ -72,7 +168,13 @@ body {
     }
 }
 
+
+/* =========================
+   ANIMASI GRADASI
+   ========================= */
+
 @keyframes gradient {
+
     0% {
         background-position: 0% 50%;
     }
@@ -86,8 +188,71 @@ body {
     }
 }
 
+
+/* =========================
+   TULISAN BAWAH
+   ========================= */
+
 p {
     margin-top: 20px;
-    color: white;
+
+    color: #ffffff;
+
     font-size: 18px;
+
+    text-shadow:
+        0 2px 5px rgba(150, 50, 90, 0.3);
+}
+
+
+/* =========================
+   BUNGA
+   ========================= */
+
+/* Bunga kiri */
+.container::before {
+    content: "🌸";
+
+    position: fixed;
+
+    left: 12%;
+    bottom: 75px;
+
+    font-size: 45px;
+
+    animation: flowerMove 3s ease-in-out infinite;
+
+    z-index: 6;
+}
+
+
+/* Bunga kanan */
+.container::after {
+    content: "🌷";
+
+    position: fixed;
+
+    right: 12%;
+    bottom: 75px;
+
+    font-size: 45px;
+
+    animation: flowerMove 3s ease-in-out infinite reverse;
+
+    z-index: 6;
+}
+
+
+/* Gerakan bunga */
+
+@keyframes flowerMove {
+
+    0%,
+    100% {
+        transform: rotate(-5deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(5deg) translateY(-8px);
+    }
 }
